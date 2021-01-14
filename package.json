@@ -6,7 +6,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node server.js",
-    "dev": "cross-env NODE_ENV=development adonis serve --dev",
+    "dev": "adonis serve --dev",
     "build": "npm run build",
     "test": "node ace test"
   },
@@ -30,12 +30,13 @@
     "@adonisjs/validator": "^5.0.6",
     "adonis-bumblebee": "^2.2.0",
     "cors": "^2.8.5",
-    "cross-env": "^7.0.3",
+    "dotenv": "^8.2.0",
     "mysql": "^2.18.1",
-    "pg": "^8.5.1",
-    "sqlite3": "^5.0.1"
+    "pg": "^8.5.1"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "cross-env": "^7.0.3"
+  },
   "autoload": {
     "App": "./app"
   }
