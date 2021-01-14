@@ -10,12 +10,16 @@ class User extends Model {
       }
     })
   }
-  tokens () {
+  token () {
     return this.hasMany('App/Models/Token')
   }
 
   user () {
     return this.belongsTo('App/Models/User')
+  }
+
+  product () {
+    return this.belongsTo('App/Models/Product')
   }
 }
 
