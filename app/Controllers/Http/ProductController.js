@@ -37,6 +37,22 @@ class ProductController {
     }
   }
 
+  async update ({params, request, response}){
+    try {
+      const product = await Product.findOrFail(params.id)
+
+      const data = request.only(['title', 'description', 'enabled'])
+
+      product.merge(data)
+
+      await product.save()
+
+      return product
+    } catch (error) {
+        return response.status(error.status).send({ error: { message: 'Ops! Ocorreu um erro ao atualizar este usuários!'}})
+    }
+  }
+
   async destroy({params, response}){
     try {
       const product = await Product.findOrFail(params.id)
