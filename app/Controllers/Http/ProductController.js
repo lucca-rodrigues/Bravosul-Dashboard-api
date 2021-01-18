@@ -16,6 +16,15 @@ class ProductController {
     }
   }
 
+  async show ({ params, response }) {
+    try {
+      const product = await Product.findOrFail(params.id)
+      return product
+    } catch (error) {
+      return response.status(error.status).send({ error: { message: 'Ops! Ocorreu um erro ao exibir os detalhes deste produto'}})
+    }
+  }
+
   async store({request, response, auth}){
     try {
       const data = request.only(['title', 'description', 'enabled'])
@@ -24,7 +33,7 @@ class ProductController {
 
       return product;
     } catch (error) {
-        return response.status(error.status).send({ error: { message: 'Ops! Ocorreu um erro ao cadastrar transação'}})
+        return response.status(error.status).send({ error: { message: 'Ops! Ocorreu um erro ao cadastrar produto'}})
     }
   }
 
