@@ -27,6 +27,17 @@ class ProductController {
         return response.status(error.status).send({ error: { message: 'Ops! Ocorreu um erro ao cadastrar transação'}})
     }
   }
+
+  async destroy({}){
+    try {
+      const product = await Product.findOrFail(params.id)
+
+      await product.delete()
+      return response.status(200).send({ message: 'Produto removido com sucesso!'})
+    } catch (error) {
+      return response.status(error.status).send({ error: { message: 'Ops! Ocorreu um erro ao remover esta transação'}})
+    }
+  }
 }
 
 module.exports = ProductController
