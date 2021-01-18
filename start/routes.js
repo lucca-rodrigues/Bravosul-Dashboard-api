@@ -15,4 +15,5 @@ Route.get('/products', 'ProductController.index')
 Route.group(() => {
   Route.get('/products/:id', 'ProductController.show')
   Route.post('/products', 'ProductController.store')
+  Route.delete('/products/:id', 'ProductController.destroy')
 }).middleware(['auth'])
