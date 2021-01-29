@@ -6,13 +6,34 @@ const Database = use('Database')
 
 
 class ProductController {
-  async index({}){
+  async index({response}){
     try {
       const product = Product.all()
       return product;
 
     } catch (error) {
         return response.status(error.status).send({ error: { message: 'Ops! Ocorreu um erro ao Listar os usuários!'}})
+    }
+  }
+
+  async myProducts({response, params, auth}){
+    try {
+      const id = params.id;
+
+      const user = await User.query(id)
+
+      .where('id', id)
+      .select('id','username','identifier')
+      .fetch()
+
+      if(auth.user.id != params.id){
+        return response.status(401).send({ error: 'Not authorized' })
+      }else{
+        const products = await Database.from('products').where('user_id', id).select('id','user_id','title', 'description', 'enabled')
+        return {user, products}
+      }
+    } catch (error) {
+      return response.status(error.status).send({ error: { message: 'Ops! Ocorreu um erro ao exibir os produtos deste usuário'}})
     }
   }
 

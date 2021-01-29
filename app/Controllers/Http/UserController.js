@@ -24,6 +24,17 @@ class UserController {
       return response.status(error.status).send({ error: { message: 'Ops! Ocorreu um erro ao Criar este usuários!'}})
     }
   }
+
+  async destroy({params, response}){
+    try {
+      const user = await User.findOrFail(params.id)
+
+      await user.delete()
+      return response.status(200).send({ message: 'Usuário removido com sucesso!'})
+    } catch (error) {
+      return response.status(error.status).send({ error: { message: 'Ops! Ocorreu um erro ao remover este usuário'}})
+    }
+  }
 }
 
 module.exports = UserController
