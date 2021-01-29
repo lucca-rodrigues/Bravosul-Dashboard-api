@@ -4,7 +4,7 @@ class SessionController {
   async store ({ request, auth}){
     const { identifier, password } = request.all()
 
-    const token = await auth.withRefreshToken().attempt(identifier, password)
+    const token = await auth.attempt(identifier, password)
 
     const user = await User.query()
     .where('identifier', identifier)
