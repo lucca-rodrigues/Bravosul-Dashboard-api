@@ -1,0 +1,35 @@
+name: CIBravosul
+
+on:
+  workflow_dispatch:
+  
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run a one-line script
+        run: echo Hello, World!
+        
+  deploy-dev:
+    runs-on: ubuntu-latest
+    environment: 
+      name: dev
+      url: 'http://development.nodejs202.uni5.net/dev'
+    needs: build
+    steps:
+      - name: Run a one-line script
+        run: echo Deploy Dev
+    
+  
+   deploy-prod:
+    runs-on: ubuntu-latest
+    environment: 
+      name: PROD
+      url: 'http://development.nodejs202.uni5.net:21007'
+    needs: build
+    steps:
+      - name: Run a one-line script
+        run: echo Deploy PROD
+    
+  
+  
