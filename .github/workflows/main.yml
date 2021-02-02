@@ -20,15 +20,15 @@ jobs:
       - name: Run a one-line script
         run: echo Deploy Dev
             
-deploy-prod: 
-  runs-on: ubuntu-latest
-  environment: 
-    name: PROD
-    url: 'http://development.nodejs202.uni5.net:21007'
-  needs: build
-  steps:
-    - name: Run a one-line script
-      run: echo Deploy PROD
+  deploy-prod: 
+    runs-on: ubuntu-latest
+    environment: 
+      name: PROD
+      url: 'http://development.nodejs202.uni5.net:21007'
+    needs: build
+    steps:
+      - name: Run a one-line script
+        run: echo Deploy PROD
     
   
   
