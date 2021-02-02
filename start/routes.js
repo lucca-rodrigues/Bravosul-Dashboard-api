@@ -14,8 +14,8 @@ Route.post('/sessions', 'SessionController.store')
 Route.get('/products', 'ProductController.index')
 
 Route.group(() => {
+  Route.get('/products/user', 'ProductController.myProducts')
   Route.get('/products/:id', 'ProductController.show')
-  Route.get('/products/user/:id', 'ProductController.myProducts')
   Route.post('/products', 'ProductController.store')
   Route.put('/products/:id', 'ProductController.update')
   Route.delete('/products/:id', 'ProductController.destroy')
