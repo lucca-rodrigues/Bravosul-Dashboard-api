@@ -3,7 +3,7 @@
 const Route = use('Route')
 
 Route.get('/', () => {
-  return { Status: 'Ok, Api Only Bravosul v1.0' }
+  return { Status: 'Ok, Api Only Bravosul v1.0.1' }
 })
 
 Route.get('/users', 'UserController.index');
